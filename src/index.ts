@@ -46,7 +46,9 @@ async function run() {
       `releases: ${releases.map((release) => release.name).join(', ')}`,
     );
     const lastRelease = releases.find(
-      (release) => release.prerelease === currentRelease.prerelease,
+      (release) =>
+        release.prerelease === currentRelease.prerelease &&
+        release.id !== currentRelease.id,
     );
     core.info(`last release: ${lastRelease?.name}`);
     const lastReleaseCommit = lastRelease?.target_commitish;
