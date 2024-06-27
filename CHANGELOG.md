@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.0-4](https://github.com/agrc/release-notifier-action/compare/v1.0.0-2...v1.0.0-4) (2024-06-27)
+
+
+### Bug Fixes
+
+* add debug statements ([d2c06f7](https://github.com/agrc/release-notifier-action/commit/d2c06f7f9e2718821cbacb990029bdc5be128e4a))
+* better issue/pr comment message ([aeb0e15](https://github.com/agrc/release-notifier-action/commit/aeb0e15e3b14b8a094a00c3c5d5b9c7a60d7bcf6)), closes [#8](https://github.com/agrc/release-notifier-action/issues/8)
+* correct permissions ([84d76a5](https://github.com/agrc/release-notifier-action/commit/84d76a50e491b006bfae2debaec518b7b33b831b))
+
 ## [1.0.0-2](https://github.com/agrc/release-notifier-action/compare/v1.0.0-1...v1.0.0-2) (2024-06-27)
 
 
