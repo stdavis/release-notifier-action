@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.0-5](https://github.com/agrc/release-notifier-action/compare/v1.0.0-4...v1.0.0-5) (2024-06-27)
+
+
+### Bug Fixes
+
+* switch to more friendly URL ([c5f8808](https://github.com/agrc/release-notifier-action/commit/c5f880807b3dd5a8479a65be2011fc698219a111)), closes [#11](https://github.com/agrc/release-notifier-action/issues/11)
+
 ## [1.0.0-4](https://github.com/agrc/release-notifier-action/compare/v1.0.0-2...v1.0.0-4) (2024-06-27)
 
 
