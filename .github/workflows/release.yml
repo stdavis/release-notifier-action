@@ -1,0 +1,26 @@
+name: Release Events
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  notify:
+    name: Release Notifier
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Set up code
+        uses: actions/checkout@v4
+        with:
+          show-progress: false
+
+      - name: Notifier
+        uses: ./
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
