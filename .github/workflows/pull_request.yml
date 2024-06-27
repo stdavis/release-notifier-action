@@ -47,7 +47,7 @@ jobs:
         run: npm ci
 
       - name: 🧪 Run tests
-        run: npm run ci-test
+        run: npm test
 
       - name: 📤 Report coverage to Codecov
         uses: codecov/codecov-action@v4
