@@ -32729,7 +32729,7 @@ async function run() {
                 name: 'act test release',
                 target_commitish: 'main',
                 prerelease: true,
-                url: 'https://google.com',
+                html_url: 'https://google.com',
             }
             : github.context.payload.release;
         core.info(`current release: ${currentRelease?.name}`);
@@ -32787,7 +32787,7 @@ async function run() {
                 owner: repo.owner,
                 repo: repo.repo,
                 issue_number: parseInt(issue),
-                body: `🥳 This issue has been deployed in [${currentRelease.name}](${currentRelease.url}).`,
+                body: `🥳 This issue has been deployed in [${currentRelease.name}](${currentRelease.html_url}).`,
             });
             core.info(`posted comment to issue: ${issue}`);
         }
