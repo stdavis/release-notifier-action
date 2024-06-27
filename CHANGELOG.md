@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.0-3](https://github.com/agrc/release-notifier-action/compare/v1.0.0-2...v1.0.0-3) (2024-06-27)
+
+
+### Bug Fixes
+
+* add debug statements ([d2c06f7](https://github.com/agrc/release-notifier-action/commit/d2c06f7f9e2718821cbacb990029bdc5be128e4a))
+
 ## [1.0.0-2](https://github.com/agrc/release-notifier-action/compare/v1.0.0-1...v1.0.0-2) (2024-06-27)
 
 
