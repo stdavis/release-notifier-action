@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.0-4](https://github.com/agrc/release-notifier-action/compare/v1.0.0-3...v1.0.0-4) (2024-06-27)
+
+
+### Bug Fixes
+
+* better issue/pr comment message ([f92d5c4](https://github.com/agrc/release-notifier-action/commit/f92d5c45c0d949d3a823fe85942dde79ab28b9cf)), closes [#8](https://github.com/agrc/release-notifier-action/issues/8)
+
 ## [1.0.0-3](https://github.com/agrc/release-notifier-action/compare/v1.0.0-2...v1.0.0-3) (2024-06-27)
 
 
