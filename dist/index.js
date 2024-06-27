@@ -32732,6 +32732,7 @@ async function run() {
             }
             : github.context.payload.release;
         core.info(`current release: ${currentRelease?.name}`);
+        core.debug(`currentRelease: ${JSON.stringify(currentRelease)}`);
         const releaseCommit = currentRelease?.target_commitish;
         core.info(`release commit: ${releaseCommit}`);
         // get the last tag
@@ -32756,7 +32757,9 @@ async function run() {
             repo: repo.repo,
         });
         core.info(`releases: ${releases.map((release) => release.name).join(', ')}`);
-        const lastRelease = releases.find((release) => release.prerelease === currentRelease.prerelease);
+        core.debug(`releases: ${JSON.stringify(releases)}`);
+        const lastRelease = releases.find((release) => release.prerelease === currentRelease.prerelease &&
+            release.id !== currentRelease.id);
         core.info(`last release: ${lastRelease?.name}`);
         const lastReleaseCommit = lastRelease?.target_commitish;
         if (!lastReleaseCommit) {

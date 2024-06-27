@@ -14,6 +14,7 @@ async function run() {
         }
       : github.context.payload.release;
     core.info(`current release: ${currentRelease?.name}`);
+    core.debug(`currentRelease: ${JSON.stringify(currentRelease)}`);
     const releaseCommit = currentRelease?.target_commitish;
     core.info(`release commit: ${releaseCommit}`);
 
@@ -45,6 +46,7 @@ async function run() {
     core.info(
       `releases: ${releases.map((release) => release.name).join(', ')}`,
     );
+    core.debug(`releases: ${JSON.stringify(releases)}`);
     const lastRelease = releases.find(
       (release) =>
         release.prerelease === currentRelease.prerelease &&
