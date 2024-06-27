@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.0-2](https://github.com/agrc/release-notifier-action/compare/v1.0.0-1...v1.0.0-2) (2024-06-27)
+
+
+### Bug Fixes
+
+* exclude current release when searching for last release ([f4d0840](https://github.com/agrc/release-notifier-action/commit/f4d0840b6032d666fd45c4c001b1cd4ace558a03))
+
 ## [1.0.0-1](https://github.com/agrc/release-notifier-action/compare/v1.0.0-0...v1.0.0-1) (2024-06-27)
 
 
