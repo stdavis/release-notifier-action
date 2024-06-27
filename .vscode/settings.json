@@ -2,6 +2,7 @@
   "cSpell.words": [
     "commitish",
     "packagejson",
+    "prereleases"
   ],
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",

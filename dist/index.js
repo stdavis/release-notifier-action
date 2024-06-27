@@ -32728,6 +32728,7 @@ async function run() {
             ? {
                 name: 'act test release',
                 target_commitish: 'main',
+                prerelease: true,
             }
             : github.context.payload.release;
         core.info(`current release: ${currentRelease?.name}`);
@@ -32755,7 +32756,7 @@ async function run() {
             repo: repo.repo,
         });
         core.info(`releases: ${releases.map((release) => release.name).join(', ')}`);
-        const lastRelease = releases.find((release) => release.prerelease);
+        const lastRelease = releases.find((release) => release.prerelease === currentRelease.prerelease);
         core.info(`last release: ${lastRelease?.name}`);
         const lastReleaseCommit = lastRelease?.target_commitish;
         if (!lastReleaseCommit) {
