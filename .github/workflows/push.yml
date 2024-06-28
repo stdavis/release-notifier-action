@@ -22,25 +22,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: ⬇️ Set up code
         uses: actions/checkout@v4
+        with:
+          show-progress: false
 
-      - name: Setup Node.js
+      - name: ⎔ Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version-file: .node-version
+          node-version: lts/*
           cache: npm
 
-      - name: Install Dependencies
+      - name: 📥 Download dependencies
         run: npm ci
 
-      - name: Check Format
+      - name: 🎨 Check format
         run: npm run format:check
 
-      - name: Lint
+      - name: 🧶 Lint
         run: npm run lint
 
-      - name: Test
+      - name: 🧪 Test
         run: npm test
 
   release:

@@ -24,15 +24,15 @@
     "node": ">=20"
   },
   "scripts": {
-    "bundle": "npm run format:write && npm run package",
+    "bundle": "npm run format:write && npm run prepare",
     "coverage": "npx make-coverage-badge --output-path ./badges/coverage.svg",
     "format:write": "npx prettier --write .",
     "format:check": "npx prettier --check .",
     "lint": "eslint . && tsc --noEmit",
-    "package": "npx ncc build src/index.ts -o dist --source-map --license licenses.txt",
-    "package:watch": "npm run package -- --watch",
+    "prepare": "npx ncc build src/index.ts -o dist --source-map --license licenses.txt",
+    "prepare:watch": "npm run prepare -- --watch",
     "test": "vitest --reporter verbose --coverage",
-    "all": "npm run format:write && npm run lint && npm run test && npm run coverage && npm run package"
+    "all": "npm run format:write && npm run lint && npm run test && npm run coverage && npm run prepare"
   },
   "license": "MIT",
   "dependencies": {
@@ -43,9 +43,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.1.0",
     "@eslint/js": "^9.5.0",
-    "@jest/globals": "^29.7.0",
     "@types/issue-parser": "^3.0.5",
-    "@types/jest": "^29.5.12",
     "@types/node": "^20.14.8",
     "@vercel/ncc": "^0.38.1",
     "@vitest/coverage-v8": "^1.6.0",
@@ -53,7 +51,6 @@
     "eslint-config-plugin": "^1.0.11",
     "eslint-config-prettier": "^9.1.0",
     "globals": "^15.6.0",
-    "make-coverage-badge": "^1.2.0",
     "prettier": "^3.3.2",
     "prettier-plugin-organize-imports": "^3.2.4",
     "prettier-plugin-packagejson": "^2.5.0",

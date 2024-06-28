@@ -1,12 +1,10 @@
 name: 'Release Notifier'
-description:
-  'Automatically post comments on GitHub issues and pull requests when a new
-  release is published.'
+description: 'Automatically comment on closed or fixed issues after a release is published.'
 author: UGRC
 
-# branding:
-#   icon: 'heart'
-#   color: 'red'
+branding:
+  icon: 'message-circle'
+  color: 'purple'
 
 inputs:
   repo-token:
