@@ -1,6 +1,6 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
-import { getIssueNumbersSinceLastCommit } from './utils';
+import { getIssueNumbersBetweenCommits } from './utils';
 
 const octokit = github.getOctokit(core.getInput('repo-token'));
 
@@ -37,21 +37,9 @@ async function run() {
     );
     core.info(`last release: ${lastRelease?.name}`);
     const lastReleaseCommit = lastRelease?.target_commitish;
-
-    if (!lastReleaseCommit) {
-      throw new Error('Could not determine last release commit');
-    }
     core.info(`last release commit: ${lastReleaseCommit}`);
 
-    // get list of commit messages between release tags
-    const { data: commits } =
-      await octokit.rest.repos.compareCommitsWithBasehead({
-        owner: repo.owner,
-        repo: repo.repo,
-        basehead: `${lastReleaseCommit}..${releaseCommit}`,
-      });
-
-    const issues = await getIssueNumbersSinceLastCommit(
+    const issues = await getIssueNumbersBetweenCommits(
       octokit,
       lastReleaseCommit,
       releaseCommit,

@@ -6,14 +6,14 @@ type PaginateResponse = {
   commits: { commit: { message: string } }[];
 };
 
-export async function getIssueNumbersSinceLastCommit(
+export async function getIssueNumbersBetweenCommits(
   octokit: ReturnType<typeof github.getOctokit>,
-  lastReleaseCommit: string | null,
+  lastReleaseCommit: string | undefined,
   currentReleaseCommit: string,
   repo: { owner: string; repo: string },
 ): Promise<string[]> {
   let commits;
-  if (lastReleaseCommit === null) {
+  if (!lastReleaseCommit) {
     // get all commits since the beginning of the repo on the default branch
     commits = await octokit.paginate(octokit.rest.repos.listCommits, {
       owner: repo.owner,

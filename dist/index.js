@@ -32745,17 +32745,8 @@ async function run() {
             release.id !== currentRelease.id);
         core.info(`last release: ${lastRelease?.name}`);
         const lastReleaseCommit = lastRelease?.target_commitish;
-        if (!lastReleaseCommit) {
-            throw new Error('Could not determine last release commit');
-        }
         core.info(`last release commit: ${lastReleaseCommit}`);
-        // get list of commit messages between release tags
-        const { data: commits } = await octokit.rest.repos.compareCommitsWithBasehead({
-            owner: repo.owner,
-            repo: repo.repo,
-            basehead: `${lastReleaseCommit}..${releaseCommit}`,
-        });
-        const issues = await (0, utils_1.getIssueNumbersSinceLastCommit)(octokit, lastReleaseCommit, releaseCommit, { owner: repo.owner, repo: repo.repo });
+        const issues = await (0, utils_1.getIssueNumbersBetweenCommits)(octokit, lastReleaseCommit, releaseCommit, { owner: repo.owner, repo: repo.repo });
         core.info(`issues: ${issues.join(', ')}`);
         // post message to issues
         for (const issue of issues) {
@@ -32788,12 +32779,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.getIssueNumbersSinceLastCommit = getIssueNumbersSinceLastCommit;
+exports.getIssueNumbersBetweenCommits = getIssueNumbersBetweenCommits;
 const issue_parser_1 = __importDefault(__nccwpck_require__(6877));
 const parse = (0, issue_parser_1.default)('github');
-async function getIssueNumbersSinceLastCommit(octokit, lastReleaseCommit, currentReleaseCommit, repo) {
+async function getIssueNumbersBetweenCommits(octokit, lastReleaseCommit, currentReleaseCommit, repo) {
     let commits;
-    if (lastReleaseCommit === null) {
+    if (!lastReleaseCommit) {
         // get all commits since the beginning of the repo on the default branch
         commits = await octokit.paginate(octokit.rest.repos.listCommits, {
             owner: repo.owner,
