@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/agrc/release-issue-notifications-action/compare/v1.0.1...v1.0.2) (2024-06-28)
+
+
+### Documentation
+
+* fix status badge formatting and better usage example ([b37ae98](https://github.com/agrc/release-issue-notifications-action/commit/b37ae9805c0dd831bf0431961c45bd2be617dcca))
+
 ## [1.0.1](https://github.com/agrc/release-issue-notifications/compare/v1.0.0...v1.0.1) (2024-06-28)
 
 
