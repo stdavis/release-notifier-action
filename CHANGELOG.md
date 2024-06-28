@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.0-7](https://github.com/agrc/release-notifier-action/compare/v1.0.0-6...v1.0.0-7) (2024-06-28)
+
+
+### Bug Fixes
+
+* add support for when there is no previous release ([50f1034](https://github.com/agrc/release-notifier-action/commit/50f1034effd1fb021576c43306ac4d749f107da8)), closes [#16](https://github.com/agrc/release-notifier-action/issues/16)
+* replace deprecated octokit method ([363bc38](https://github.com/agrc/release-notifier-action/commit/363bc38f51c3d5cf0d61afcb31b07222b541cf25))
+
 ## [1.0.0-6](https://github.com/agrc/release-notifier-action/compare/v1.0.0-6...v1.0.0-6) (2024-06-28)
 
 
