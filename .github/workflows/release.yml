@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   notify:
-    name: Release Notifier
+    name: Release Issue Notifications
     runs-on: ubuntu-latest
 
     steps:

@@ -1,4 +1,4 @@
-# Release Notifier Action
+# Release Issue Notifications
 
 [![Push Events](https://github.com/agrc/release-notifier-action/actions/workflows/push.yml/badge.svg)](https://github.com/agrc/release-notifier-action/actions/workflows/push.yml)
 

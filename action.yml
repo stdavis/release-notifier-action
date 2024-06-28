@@ -1,4 +1,4 @@
-name: 'Release Notifier'
+name: 'Release Issue Notifications'
 description: 'Automatically comment on closed or fixed issues after a release is published.'
 author: UGRC
 
