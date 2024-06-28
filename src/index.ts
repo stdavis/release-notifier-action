@@ -45,12 +45,12 @@ async function run() {
     core.info(`last release commit: ${lastReleaseCommit}`);
 
     // get list of commit messages between release tags
-    const { data: commits } = await octokit.rest.repos.compareCommits({
-      owner: repo.owner,
-      repo: repo.repo,
-      base: lastReleaseCommit,
-      head: releaseCommit,
-    });
+    const { data: commits } =
+      await octokit.rest.repos.compareCommitsWithBasehead({
+        owner: repo.owner,
+        repo: repo.repo,
+        basehead: `${lastReleaseCommit}..${releaseCommit}`,
+      });
 
     // parse commit message to get list of issue numbers
     const issues = commits.commits
