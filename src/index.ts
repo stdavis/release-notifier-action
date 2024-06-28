@@ -1,8 +1,7 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
-import issueParser from 'issue-parser';
+import { getIssueNumbersSinceLastCommit } from './utils';
 
-const parse = issueParser('github');
 const octokit = github.getOctokit(core.getInput('repo-token'));
 
 async function run() {
@@ -52,12 +51,12 @@ async function run() {
         basehead: `${lastReleaseCommit}..${releaseCommit}`,
       });
 
-    // parse commit message to get list of issue numbers
-    const issues = commits.commits
-      .map((commit) => parse(commit.commit.message))
-      .flat()
-      .map((parsed) => parsed.actions.close.map((close) => close.issue))
-      .flat();
+    const issues = await getIssueNumbersSinceLastCommit(
+      octokit,
+      lastReleaseCommit,
+      releaseCommit,
+      { owner: repo.owner, repo: repo.repo },
+    );
 
     core.info(`issues: ${issues.join(', ')}`);
 

@@ -32714,14 +32714,10 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(2186));
 const github = __importStar(__nccwpck_require__(5438));
-const issue_parser_1 = __importDefault(__nccwpck_require__(6877));
-const parse = (0, issue_parser_1.default)('github');
+const utils_1 = __nccwpck_require__(1314);
 const octokit = github.getOctokit(core.getInput('repo-token'));
 async function run() {
     try {
@@ -32754,18 +32750,12 @@ async function run() {
         }
         core.info(`last release commit: ${lastReleaseCommit}`);
         // get list of commit messages between release tags
-        const { data: commits } = await octokit.rest.repos.compareCommits({
+        const { data: commits } = await octokit.rest.repos.compareCommitsWithBasehead({
             owner: repo.owner,
             repo: repo.repo,
-            base: lastReleaseCommit,
-            head: releaseCommit,
+            basehead: `${lastReleaseCommit}..${releaseCommit}`,
         });
-        // parse commit message to get list of issue numbers
-        const issues = commits.commits
-            .map((commit) => parse(commit.commit.message))
-            .flat()
-            .map((parsed) => parsed.actions.close.map((close) => close.issue))
-            .flat();
+        const issues = await (0, utils_1.getIssueNumbersSinceLastCommit)(octokit, lastReleaseCommit, releaseCommit, { owner: repo.owner, repo: repo.repo });
         core.info(`issues: ${issues.join(', ')}`);
         // post message to issues
         for (const issue of issues) {
@@ -32785,6 +32775,48 @@ async function run() {
     }
 }
 run();
+
+
+/***/ }),
+
+/***/ 1314:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.getIssueNumbersSinceLastCommit = getIssueNumbersSinceLastCommit;
+const issue_parser_1 = __importDefault(__nccwpck_require__(6877));
+const parse = (0, issue_parser_1.default)('github');
+async function getIssueNumbersSinceLastCommit(octokit, lastReleaseCommit, currentReleaseCommit, repo) {
+    let commits;
+    if (lastReleaseCommit === null) {
+        // get all commits since the beginning of the repo on the default branch
+        commits = await octokit.paginate(octokit.rest.repos.listCommits, {
+            owner: repo.owner,
+            repo: repo.repo,
+            per_page: 100,
+        });
+    }
+    else {
+        const responses = await octokit.paginate('GET /repos/{owner}/{repo}/compare/{basehead}', {
+            owner: repo.owner,
+            repo: repo.repo,
+            basehead: `${lastReleaseCommit}...${currentReleaseCommit}`,
+            per_page: 100,
+        });
+        commits = responses.flatMap((response) => response.commits);
+    }
+    // parse commit message to get list of issue numbers
+    const issues = commits
+        .map((commit) => parse(commit.commit.message))
+        .map((parsed) => parsed.actions.close.map((close) => close.issue))
+        .flat();
+    return issues;
+}
 
 
 /***/ }),

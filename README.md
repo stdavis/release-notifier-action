@@ -18,6 +18,14 @@ with:
   repo-token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-## Package for distribution
+## Package for Distribution
 
 This action is built and distributed via the included GitHub action workflows.
+
+## Local Testing
+
+You may test some of the utilities that this action uses locally by running scripts in the `scripts` directory. For example:
+
+```bash
+npx tsx scripts/testGetIssueNumbers.ts $(gh auth token) 2a90bc980886321aca554eddc47b98c7638617b3 89327edb99c324c82aced47238c6b29e03f0a23d agrc release-notifier-action
+```
