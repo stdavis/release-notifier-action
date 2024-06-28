@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/agrc/release-issue-notifications/compare/v1.0.0...v1.0.1) (2024-06-28)
+
+
+### Bug Fixes
+
+* make name unique in actions marketplace ([995b640](https://github.com/agrc/release-issue-notifications/commit/995b6407f1d6ec0f589f733ac3792f23fb83aaee))
+
 ## [1.0.0](https://github.com/agrc/release-notifier-action/compare/v1.0.0-7...v1.0.0) (2024-06-28)
 
 
