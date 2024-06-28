@@ -1,5 +1,28 @@
 # Changelog
 
+## [1.0.0-6](https://github.com/agrc/release-notifier-action/compare/v1.0.0-6...v1.0.0-6) (2024-06-28)
+
+
+### Features
+
+* initial attempt at posting messages ([aeb74f8](https://github.com/agrc/release-notifier-action/commit/aeb74f84e19859ab33a4657f0c71a751d01f870b))
+
+
+### Bug Fixes
+
+* add debug statements ([d2c06f7](https://github.com/agrc/release-notifier-action/commit/d2c06f7f9e2718821cbacb990029bdc5be128e4a))
+* better issue/pr comment message ([aeb0e15](https://github.com/agrc/release-notifier-action/commit/aeb0e15e3b14b8a094a00c3c5d5b9c7a60d7bcf6)), closes [#8](https://github.com/agrc/release-notifier-action/issues/8)
+* clean up and polish ([736a9db](https://github.com/agrc/release-notifier-action/commit/736a9db6057259be6b2ffee01cc788b67c76f5fa))
+* correct permissions ([84d76a5](https://github.com/agrc/release-notifier-action/commit/84d76a50e491b006bfae2debaec518b7b33b831b))
+* exclude current release when searching for last release ([f4d0840](https://github.com/agrc/release-notifier-action/commit/f4d0840b6032d666fd45c4c001b1cd4ace558a03))
+* format ([5f67bbd](https://github.com/agrc/release-notifier-action/commit/5f67bbd7a1311a0c18b47f6ff1d3a79a249a44d2))
+* ignore vscode settings file ([7141876](https://github.com/agrc/release-notifier-action/commit/714187608ce86bfd8142bf759caa945d1169bb99))
+* job name ([4291cd5](https://github.com/agrc/release-notifier-action/commit/4291cd524ee9aa84b9e9e7ef83b7280250db1a8e))
+* linting and test commands ([899400f](https://github.com/agrc/release-notifier-action/commit/899400f611a062f1da03d14bc187f699b984ea55))
+* support prereleases ([682d669](https://github.com/agrc/release-notifier-action/commit/682d669601edf43e7e90ee11900b10f68d86e775))
+* switch to more friendly URL ([c5f8808](https://github.com/agrc/release-notifier-action/commit/c5f880807b3dd5a8479a65be2011fc698219a111)), closes [#11](https://github.com/agrc/release-notifier-action/issues/11)
+* use correct workflow name ([a159aec](https://github.com/agrc/release-notifier-action/commit/a159aecd61f5d660e74e6d5ce4dcff75917d10f0)), closes [#3](https://github.com/agrc/release-notifier-action/issues/3)
+
 ## [1.0.0-6](https://github.com/agrc/release-notifier-action/compare/v1.0.0-5...v1.0.0-6) (2024-06-28)
 
 
