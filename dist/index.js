@@ -32722,32 +32722,19 @@ const core = __importStar(__nccwpck_require__(2186));
 const github = __importStar(__nccwpck_require__(5438));
 const issue_parser_1 = __importDefault(__nccwpck_require__(6877));
 const parse = (0, issue_parser_1.default)('github');
+const octokit = github.getOctokit(core.getInput('repo-token'));
 async function run() {
     try {
-        const currentRelease = process.env.ACT
-            ? {
-                name: 'act test release',
-                target_commitish: 'main',
-                prerelease: true,
-                html_url: 'https://google.com',
-            }
-            : github.context.payload.release;
+        // get the current release; the release that triggered the action
+        const currentRelease = github.context.payload.release;
         core.info(`current release: ${currentRelease?.name}`);
         core.debug(`currentRelease: ${JSON.stringify(currentRelease)}`);
         const releaseCommit = currentRelease?.target_commitish;
         core.info(`release commit: ${releaseCommit}`);
-        // get the last tag
-        const octokit = github.getOctokit(core.getInput('repo-token'));
-        const repo = process.env.ACT
-            ? {
-                // for testing locally with act
-                owner: 'agrc',
-                repo: 'release-notifier-action',
-            }
-            : {
-                owner: github.context.payload.repository?.owner.login,
-                repo: github.context.payload.repository?.name,
-            };
+        const repo = {
+            owner: github.context.payload.repository?.owner.login,
+            repo: github.context.payload.repository?.name,
+        };
         if (!repo.owner || !repo.repo) {
             throw new Error('Could not determine repository owner and name');
         }
@@ -32757,7 +32744,6 @@ async function run() {
             owner: repo.owner,
             repo: repo.repo,
         });
-        core.info(`releases: ${releases.map((release) => release.name).join(', ')}`);
         core.debug(`releases: ${JSON.stringify(releases)}`);
         const lastRelease = releases.find((release) => release.prerelease === currentRelease.prerelease &&
             release.id !== currentRelease.id);
@@ -32767,27 +32753,27 @@ async function run() {
             throw new Error('Could not determine last release commit');
         }
         core.info(`last release commit: ${lastReleaseCommit}`);
-        // get list of commit messages from git between release tags
+        // get list of commit messages between release tags
         const { data: commits } = await octokit.rest.repos.compareCommits({
             owner: repo.owner,
             repo: repo.repo,
             base: lastReleaseCommit,
             head: releaseCommit,
         });
-        // parse commit message to get list of issue/PR numbers
+        // parse commit message to get list of issue numbers
         const issues = commits.commits
             .map((commit) => parse(commit.commit.message))
             .flat()
             .map((parsed) => parsed.actions.close.map((close) => close.issue))
             .flat();
         core.info(`issues: ${issues.join(', ')}`);
-        // post message to GitHub issue/PRs
+        // post message to issues
         for (const issue of issues) {
             await octokit.rest.issues.createComment({
                 owner: repo.owner,
                 repo: repo.repo,
                 issue_number: parseInt(issue),
-                body: `🥳 This issue has been deployed in [${currentRelease.name}](${currentRelease.html_url}).`,
+                body: `🥳 This issue is included in [${currentRelease.name}](${currentRelease.html_url})`,
             });
             core.info(`posted comment to issue: ${issue}`);
         }
