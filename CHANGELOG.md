@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.5](https://github.com/agrc/release-issue-notifications-action/compare/v1.0.4...v1.0.5) (2024-10-03)
+
+
+### Dependencies
+
+* bump rollup from 4.20.0 to 4.24.0 in the npm_and_yarn group ([6472739](https://github.com/agrc/release-issue-notifications-action/commit/6472739c342900283d2fb3b232a484a6ba60b6f9))
+* bump the safe-dependencies group across 1 directory with 11 updates ([422f7eb](https://github.com/agrc/release-issue-notifications-action/commit/422f7eb2641f93f990589347b7290f761aff21ac))
+* bump vite from 5.4.1 to 5.4.6 in the npm_and_yarn group ([fec9dca](https://github.com/agrc/release-issue-notifications-action/commit/fec9dca38ed995935bd5d83ab3851d56cb0309ad))
+
 ## [1.0.4](https://github.com/agrc/release-issue-notifications-action/compare/v1.0.3...v1.0.4) (2024-08-16)
 
 
