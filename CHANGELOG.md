@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.6](https://github.com/agrc/release-issue-notifications-action/compare/v1.0.5...v1.0.6) (2025-01-07)
+
+
+### Dependencies
+
+* bump the safe-dependencies group across 1 directory with 12 updates ([9418281](https://github.com/agrc/release-issue-notifications-action/commit/9418281b413a0a141dd2eb60eb41a5063bfea79e))
+* q3 updates ([b2b2e57](https://github.com/agrc/release-issue-notifications-action/commit/b2b2e57bf07b1ec694393acf45d241693d0739ff))
+
 ## [1.0.5](https://github.com/agrc/release-issue-notifications-action/compare/v1.0.4...v1.0.5) (2024-10-03)
 
 
